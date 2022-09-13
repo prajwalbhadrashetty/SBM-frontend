@@ -1,0 +1,56 @@
+<div class="backBtn">
+    <button type="button" class="btn btn-default btn1 btn-sm" [routerLink]="'/dashboard'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+    </button>
+</div>
+<div class="d-flex justify-content-center mb-5">
+    <h3>Profile</h3>
+</div>
+
+<div class="container-fluid">
+  
+    <form [formGroup]="profileForm">
+    
+        <div class="row justify-content-center">
+    
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input [readonly]="isReadOnly" type="text" formControlName="name" placeholder="Name" class="form-control" pattern="[a-zA-Z ]+">
+                    </div>
+                </div>
+    
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input [readonly]="isReadOnly" type="password" formControlName="password" placeholder="Password" class="form-control" pattern="[^' ']+">
+                    </div>
+                </div>
+
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="">Mobile</label>
+                        <input [readonly]="isReadOnly" type="text" formControlName="mobile" placeholder="Mobile" class="form-control" pattern="[789][0-9]{9}" maxlength="10">
+                    </div>
+                </div>
+    
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="">Email Id</label>
+                        <input [readonly]="isReadOnly" type="email" formControlName="mailId" placeholder="Mail Id" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    </div>
+                </div>
+    
+        </div>
+    
+        <div class="row my-3 justify-content-center">
+            <div class="col-3 d-flex justify-content-center">
+                <button [style.background-color]="isReadOnly ? '#6f61c6' : 'red'"  class="btn button" name="editbtn" (click)="disableread($event.target, 'Cancel')">Edit</button>
+                <button  [disabled]="profileForm.status === 'INVALID'" class="btn button ml-2" (click)="updateUser()">Update</button>
+            </div>
+        </div>
+    
+    </form>
+

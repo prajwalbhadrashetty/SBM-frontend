@@ -1,0 +1,62 @@
+<div class="container" style="margin: 8rem auto 2rem">
+    <p class="h2 text-center">Customer | Sign Up</p>
+  
+    <div class="row justify-content-center my-4">
+      <div class="col-lg-4">
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="name"
+            class="form-control mb-3"
+            name="name"
+            autocomplete="off"
+            formControlName="name"
+            pattern="[a-zA-Z ]+"
+          />
+
+          <label for="mobile" class="form-label">Mobile</label>
+          <input
+            type="mobile"
+            class="form-control mb-3"
+            name="mobile"
+            autocomplete="off"
+            formControlName="mobile"
+            pattern="[789][0-9]{9}" 
+            maxlength="10"
+          />
+
+          <label for="mail" class="form-label">Mail</label>
+          <input
+            type="email"
+            class="form-control mb-3"
+            name="mailId"
+            autocomplete="off"
+            formControlName="mailId"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          />
+  
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control mb-3"
+            name="password"
+            autocomplete="off"
+            formControlName="password"
+            pattern="[^' ']+"
+          />
+  
+          <input
+            type="submit"
+            class="btn w-100"
+            value="Sign Up"
+            [disabled]="signUpForm.invalid"
+          />
+        </form>
+  
+        <div class="text-center mt-3">
+          Already a user? <a routerLink="/login">SignIn</a><br />
+        </div>
+      </div>
+    </div>
+  </div>
+  

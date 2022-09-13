@@ -1,0 +1,89 @@
+<div class="backBtn">
+    <button type="button" class="btn btn-default btn1 btn-sm" [routerLink]="'/dashboard'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+    </button>
+</div>
+<div class="container-fluid">
+
+    <form [formGroup]="productForm">
+    
+        <div class="row">
+    
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" formControlName="name" placeholder="Name" class="form-control" pattern="[a-zA-Z ]+">
+                    </div>
+                </div>
+    
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" formControlName="make" placeholder="Make" class="form-control">
+                    </div>
+                </div>
+    
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" formControlName="model" placeholder="Model" class="form-control">
+                    </div>
+                </div>
+    
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" formControlName="cost" placeholder="Cost" class="form-control" pattern="[0-9]+">
+                    </div>
+                </div>
+    
+        </div>
+    
+        <div class="row my-2">
+            <div class="col">
+                <button *ngIf="id == 0" [disabled]="productForm.status === 'INVALID'" class="btn button" (click)="addProduct()">Add Product</button>
+                <button *ngIf="id != 0" [disabled]="productForm.status === 'INVALID'" class="btn button" (click)="updateProduct()">Update Product</button>
+            </div>
+        </div>
+    
+    </form>
+    
+    
+        <div class="row">
+    
+            <div class="col">
+    
+    
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Cost</th>
+                        <th>Created Date</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products">
+                            <th>{{ product.id }}</th>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.make }}</td>
+                            <td>{{ product.model }}</td>
+                            <td>{{ product.cost }}</td>
+                            <td>{{ product.createdDate | date:'mediumDate' }}</td>
+                            <td>
+                                <button (click)="edit(product)" class="btn button mx-1">edit</button>
+                                <button (click)="delete(product.id)" class="btn btn-danger mx-1">delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </div>
+    
+        </div>
+    
+    </div>

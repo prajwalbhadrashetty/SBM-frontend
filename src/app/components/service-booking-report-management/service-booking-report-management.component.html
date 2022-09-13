@@ -1,0 +1,218 @@
+<div class="backBtn">
+    <button type="button" class="btn btn-default btn1 btn-sm" [routerLink]="'/dashboard'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+    </button>
+</div>
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col">
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item" (click)="isBookings = !isBookings">
+                    <a class="nav-link" [ngClass]="isBookings ? 'active': ''">Bookings</a>
+                </li>
+                <li class="nav-item" (click)="isBookings = !isBookings">
+                    <a class="nav-link" [ngClass]="!isBookings ? 'active': ''">Reports</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="row" *ngIf="isBookings">
+
+        <div class="col">
+
+            <form [formGroup]="bookingForm">
+
+                <div class="container border my-2">
+
+                    <div class="row m-1"> <h5>Add Booking</h5> </div>
+
+                    <div class="row">
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" placeholder="Id" formControlName="id">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <!-- <select name="" id="" class="custom-select" formControlName="prodId">
+                                <option value="" selected>Choose Product</option>
+                                <option value="1">SandalWood</option>
+                                <option value="1">Meth</option>
+                                <option value="1">Ball Python Toy</option>
+                            </select> -->
+                            <input class="form-control" type="text" placeholder="Product Id" formControlName="productId">
+                        </div>
+        
+                        <div class="form-group mx-1">
+                            <!-- <select name="" id="" class="custom-select" formControlName="userId">
+                                <option value="" selected>Choose User</option>
+                                <option value="1">Varun</option>
+                                <option value="2">Micheal</option>
+                                <option value="3">Sergio</option>
+                            </select> -->
+                            <input class="form-control" type="text" placeholder="User Id" formControlName="userId">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="date" formControlName="reqDate" placeholder="Request Date">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="problem" placeholder="Problem">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="description" placeholder="Description">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="status" placeholder="Status">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn button" (click)="addBooking()">Add Booking</button>&nbsp;
+                            <button class="btn button" (click)="updateBooking()">Update Booking</button>
+                        </div>
+    
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Product Id</th>
+                        <th>User Id</th>
+                        <th>Request Date</th>
+                        <th>Problem</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let booking of bookings">
+                            <td>{{ booking.productId }}</td>
+                            <td>{{ booking.userId }}</td>
+                            <td>{{ booking.reqDate | date:'mediumDate' }}</td>
+                            <td>{{ booking.problem }}</td>
+                            <td>{{ booking.description }}</td>
+                            <td>{{ booking.status }}</td>
+                            <td> 
+                                <button class="btn button" (click)="edit(booking)">edit</button>&nbsp;
+                                <button class="btn btn-danger" (click)="delete(booking.id)">delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row" *ngIf="!isBookings">
+
+        <div class="col">
+
+            <form [formGroup]="reportForm">
+
+                <div class="container border my-2">
+
+                    <div class="row m-1"> <h5>Add Report</h5> </div>
+
+                    <div class="row">
+
+                        <div class="form-group mx-1">
+                            <input type="number" class="form-control" formControlName="serReqId" placeholder="Service request id">
+                        </div>
+        
+                        <div class="form-group mx-1">
+                            <input type="date" class="form-control" formControlName="reportDate" placeholder="Report Date">
+                        </div>
+
+                        <div class="form-group">
+                            <select name="" id="" class="custom-select" formControlName="serviceType">
+                                <option value="">Service Type</option>
+                                <option value="general">General</option>
+                                <option value="repair">Important</option>
+                                <option value="support">Top-Priority</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="actionTaken" placeholder="Action Taken">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="diagnosisDetail" placeholder="Diagnosis">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="isPaid" placeholder="Paid Status">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="visitFees" placeholder="Visit Fees">
+                        </div>
+
+                        <div class="form-group mx-1">
+                            <input class="form-control" type="text" formControlName="reportDetails" placeholder="Report Details">
+                        </div>
+
+                        <div class="form-group">
+                            <button *ngIf="reportId == 0" class="btn button" [disabled]="reportForm.status === 'INVALID'" (click)="addReport()">Add Report</button>
+                            <button *ngIf="reportId != 0" class="btn button" (click)="updateReport()">Update Report</button>
+                        </div>
+    
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Service Request Id</th>
+                        <th>Report Date</th>
+                        <th>Service Type</th>
+                        <th>Action Taken</th>
+                        <th>Diagnosis Detail</th>
+                        <th>Paid</th>
+                        <th>Fees</th>
+                        <th>Details</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let report of reports">
+                            <td>{{ report.serReqId }}</td>
+                            <td>{{ report.reportDate | date:'mediumDate' }}</td>
+                            <td>{{ report.serviceType }}</td>
+                            <td>{{ report.actionTaken }}</td>
+                            <td>{{ report.diagnosisDetails }}</td>
+                            <td>{{ report.isPaid }}</td>
+                            <td>{{ report.visitFees }}</td>
+                            <td>{{ report.repairDetails }}</td>
+                            <td>
+                               
+                                <button class="btn btn-danger" (click)="deleteReport(report.reportId)">delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

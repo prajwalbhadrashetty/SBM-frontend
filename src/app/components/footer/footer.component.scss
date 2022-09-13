@@ -1,0 +1,26 @@
+.footer {
+    padding: 10px 0px 0px 0px;
+    background-color: #321b3a;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+  }
+  
+  .footer__copyright {
+    font-size: 14px;
+    color: #aaa;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .brand-logo {
+    height: 40px;
+    width: auto;
+    text-align: center;
+  }

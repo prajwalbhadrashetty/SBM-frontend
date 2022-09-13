@@ -1,0 +1,42 @@
+.card:hover{
+    cursor: pointer;
+}
+
+.card{
+    position: relative;
+    border: none;
+}
+
+.icon{
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    border: 1px solid white;
+    border-radius: 25px;
+    position: absolute;
+    top: 25px;
+    left: 40%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding-left: 9px;
+}
+
+.title{
+    height: 130px;
+    position: relative;
+    top: 50px;
+    border-radius: 10px;
+}
+
+.title p{
+    color: white;
+    text-align: center;
+    font-size: 1.3em;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left:50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
